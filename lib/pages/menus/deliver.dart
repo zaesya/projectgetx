@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 
-
-class Profile extends StatelessWidget {
-  const Profile({super.key});
+class Deliver extends StatelessWidget {
+  const Deliver({super.key});
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
+     
       body: Column(
         children: [
           // Image Header
@@ -22,6 +21,24 @@ class Profile extends StatelessWidget {
             ),
           ),     
         ],
+      ),
+      // Button to navigate to another screen using GetX
+    );
+  }
+}
+
+class SecondScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Second Screen'),
+      ),
+      body: Center(
+        child: Text(
+          'This is the second screen',
+          style: TextStyle(fontSize: 24),
+        ),
       ),
     );
   }
