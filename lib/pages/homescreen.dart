@@ -8,7 +8,7 @@ import 'package:projectgetx/pages/menus/profile.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final BottomNavController bottomNavController = Get.put(BottomNavController());
+    final BottomNavController bottomNavController = Get.find();
 
     final List<Widget> menus = [Home(), Deliver(), Profile()];
 
