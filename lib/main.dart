@@ -19,9 +19,11 @@ class MyApp extends StatelessWidget {
       initialRoute: '/login',
       getPages: [
         GetPage(name: '/login', page: () => LoginPage()),
-        GetPage(name: '/home', page: () => HomePage(),
-        binding: MyBindings(),
-        )
+        GetPage(
+          name: '/home',
+          page: () => HomePage(),
+          binding: MyBindings(), // Pastikan binding ini menghubungkan controller
+        ),
       ],
     );
   }

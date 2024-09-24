@@ -28,4 +28,14 @@ flutter:
     - assets/gulai.png
     - assets/hotcakes.png
     - assets/mcflurry.png
+    - assets/cheeseburger.png
+    - assets/kentang.png
+
+  fonts:
+    - family: Outfit
+      fonts:
+        - asset: assets/fonts/Outfit.ttf
+        - asset: assets/fonts/OutfitRegular.ttf
+        - asset: assets/fonts/OutfitBold.ttf
+          weight: 700
 
