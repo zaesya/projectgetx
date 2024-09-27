@@ -1,14 +1,24 @@
 import 'package:get/get.dart';
 
 class CartController extends GetxController {
-  var cartItems = <String>[].obs; // Menggunakan Rx untuk membuat list observable
+  var cartItems = <String>[].obs;
+  var selectedItems = <String>[].obs;
 
   void addItem(String item) {
-    cartItems.add(item); // Menambahkan item ke keranjang
-    Get.snackbar('Added to Cart', '$item has been added to your cart!'); // Notifikasi snackbar
+    cartItems.add(item);
   }
 
-  void removeItem(String item) {
-    cartItems.remove(item); // Menghapus item dari keranjang
+  void removeSelectedItems() {
+    cartItems.removeWhere((item) => selectedItems.contains(item));
+    selectedItems.clear(); // Clear selections after removal
+  }
+
+  void toggleSelection(String item) {
+    if (selectedItems.contains(item)) {
+      selectedItems.remove(item); // Deselect
+    } else {
+      selectedItems.add(item); // Select
+    }
+    // No need for update() here because RxList is reactive.
   }
 }

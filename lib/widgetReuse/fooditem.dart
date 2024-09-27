@@ -4,12 +4,14 @@ class FoodItem extends StatelessWidget {
   final String image;
   final String name;
   final String price;
+  final VoidCallback onAddToCart; // Callback for adding to cart
 
   const FoodItem({
     Key? key,
     required this.image,
     required this.name,
     required this.price,
+    required this.onAddToCart, // Initialize the callback
   }) : super(key: key);
 
   @override
@@ -31,52 +33,6 @@ class FoodItem extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
-              ),
-            ),
-          ),
-          // Add to Cart Button
-          Positioned(
-            left: 36,
-            top: 217,
-            child: Container(
-              width: 111,
-              height: 30,
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Color(0x1D011730),
-                    blurRadius: 44,
-                    offset: Offset(0, 42),
-                    spreadRadius: -10,
-                  ),
-                ],
-              ),
-              child: Stack(
-                children: [
-                  Container(
-                    width: 111,
-                    height: 30,
-                    decoration: ShapeDecoration(
-                      color: Color(0xFFFCAD37),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                  ),
-                  Center(
-                    child: Text(
-                      '+    Add to cart',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontFamily: 'Outfit',
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: -0.50,
-                      ),
-                    ),
-                  ),
-                ],
               ),
             ),
           ),
@@ -129,6 +85,55 @@ class FoodItem extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                   letterSpacing: -0.20,
                 ),
+              ),
+            ),
+          ),
+          // Add to Cart Button
+          Positioned(
+            left: 36,
+            top: 217,
+            child: Container(
+              width: 111,
+              height: 30,
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(0x1D011730),
+                    blurRadius: 44,
+                    offset: Offset(0, 42),
+                    spreadRadius: -10,
+                  ),
+                ],
+              ),
+              child: Stack(
+                children: [
+                  Container(
+                    width: 111,
+                    height: 30,
+                    decoration: ShapeDecoration(
+                      color: Color(0xFFFCAD37),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: TextButton(
+                      onPressed: onAddToCart, // Trigger the callback on button press
+                      child: Text(
+                        '+ Add to Cart',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontFamily: 'Outfit',
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: -0.50,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

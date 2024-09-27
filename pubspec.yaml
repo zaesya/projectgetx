@@ -30,6 +30,7 @@ flutter:
     - assets/mcflurry.png
     - assets/cheeseburger.png
     - assets/kentang.png
+    - assets/search.png
 
   fonts:
     - family: Outfit

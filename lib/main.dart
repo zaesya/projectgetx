@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:projectgetx/bindings/bindings.dart';
+import 'package:projectgetx/pages/controller/cart_controller.dart';
 import 'package:projectgetx/pages/homescreen.dart';
 import 'package:projectgetx/pages/login_page.dart';
 
 void main() {
+  Get.put(CartController());
   runApp(MyApp());
 }
 

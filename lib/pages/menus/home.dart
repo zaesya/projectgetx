@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:projectgetx/pages/controller/cart_controller.dart';
 import 'package:projectgetx/widgetReuse/fooditem.dart';
 
 class Home extends StatelessWidget {
-  const Home({super.key});
+  final CartController cartController; 
+
+  Home({Key? key}) 
+      : cartController = Get.find<CartController>(), 
+        super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +30,72 @@ class Home extends StatelessWidget {
               ),
             ),
 
+            // Search Box
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 5.0),
+              child: Container(
+                width: 382,
+                height: 29,
+                child: Stack(
+                  children: [
+                    Positioned(
+                      left: 0,
+                      top: 0,
+                      child: Container(
+                        width: 370,
+                        height: 24,
+                        decoration: ShapeDecoration(
+                          color: Color(0xFFE0E0E0),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      left: 30,
+                      top: 0,
+                      child: Opacity(
+                        opacity: 0.70,
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: 'Search . . .',
+                            hintStyle: TextStyle(
+                              color: Colors.black,
+                              fontSize: 11,
+                              fontFamily: 'Outfit',
+                              fontWeight: FontWeight.w600,
+                              height: 0.24,
+                              letterSpacing: -0.20,
+                            ),
+                            border: InputBorder.none, // Removes the border
+                            contentPadding: EdgeInsets.only(left: 40.0), // Padding for text
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      left: 6,
+                      top: 6,
+                      child: Container(
+                        width: 18,
+                        height: 18,
+                        clipBehavior: Clip.antiAlias,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('assets/search.png'),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
             // Add padding of 40 pixels (around 4 cm)
             Padding(
-              padding: const EdgeInsets.only(top: 40.0, left: 40.0),
+              padding: const EdgeInsets.only(top: 5.0, left: 40.0),
               child: Container(
                 width: 382,
                 height: 193,
@@ -65,14 +135,14 @@ class Home extends StatelessWidget {
                 ),
               ),
             ),
-            
+
             Padding(
               padding: const EdgeInsets.only(top: 0.0, left: 40.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'menu',
+                    'Menu',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 25,
@@ -82,45 +152,29 @@ class Home extends StatelessWidget {
                   ),
                   SizedBox(height: 5),
 
-                  // Row 1: Bubur Ayam McD and HotCakes
+                  // Using FoodItem with add to cart functionality
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      // Reusable FoodItem for Bubur Ayam McD
+                      // Bubur Ayam McD
                       FoodItem(
                         image: 'assets/bubur.png',
                         name: 'Bubur Ayam McD',
                         price: '23.000',
+                        onAddToCart: () {
+                          cartController.addItem('Bubur Ayam McD');
+                        },
                       ),
-                      SizedBox(width: 16), // Space between the items
+                      SizedBox(width: 16),
 
-                      // Reusable FoodItem for HotCakes
+                      // HotCakes
                       FoodItem(
                         image: 'assets/hotcakes.png',
                         name: 'HotCakes',
                         price: '20.000',
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 16), // Space between rows
-
-                  
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      // Reusable FoodItem for Nasi Uduk
-                      FoodItem(
-                        image: 'assets/mcflurry.png', // Replace with your asset path
-                        name: 'McFlurry Oreo',
-                        price: '12.000',
-                      ),
-                      SizedBox(width: 16), // Space between the items
-
-                      // Reusable FoodItem for Big Mac
-                      FoodItem(
-                        image: 'assets/gulai.png', // Replace with your asset path
-                        name: 'McD Gulai',
-                        price: '30.000',
+                        onAddToCart: () {
+                          cartController.addItem('HotCakes');
+                        },
                       ),
                     ],
                   ),
@@ -129,19 +183,52 @@ class Home extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      // Reusable FoodItem for Nasi Uduk
+                      // McFlurry
                       FoodItem(
-                        image: 'assets/kentang.png', // Replace with your asset path
+                        image: 'assets/mcflurry.png',
+                        name: 'McFlurry Oreo',
+                        price: '12.000',
+                        onAddToCart: () {
+                          cartController.addItem('McFlurry Oreo');
+                        },
+                      ),
+                      SizedBox(width: 16),
+
+                      // Gulai
+                      FoodItem(
+                        image: 'assets/gulai.png',
+                        name: 'McD Gulai',
+                        price: '30.000',
+                        onAddToCart: () {
+                          cartController.addItem('McD Gulai');
+                        },
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 16),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      // French Fries
+                      FoodItem(
+                        image: 'assets/kentang.png',
                         name: 'French Fries',
                         price: '16.000',
+                        onAddToCart: () {
+                          cartController.addItem('French Fries');
+                        },
                       ),
-                      SizedBox(width: 16), // Space between the items
+                      SizedBox(width: 16),
 
-                      // Reusable FoodItem for Big Mac
+                      // Cheeseburger
                       FoodItem(
-                        image: 'assets/cheeseburger.png', // Replace with your asset path
+                        image: 'assets/cheeseburger.png',
                         name: 'Cheeseburger',
                         price: '32.000',
+                        onAddToCart: () {
+                          cartController.addItem('Cheeseburger');
+                        },
                       ),
                     ],
                   ),
