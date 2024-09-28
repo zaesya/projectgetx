@@ -10,7 +10,6 @@ class Home extends StatelessWidget {
       : cartController = Get.find<CartController>(), 
         super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,7 +115,7 @@ class Home extends StatelessWidget {
                         ),
                       ),
                     ),
-                    // Image from assets inside the Stack
+                    // Image assets 
                     Positioned(
                       left: 34,
                       top: 0,
@@ -142,7 +141,7 @@ class Home extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Menu',
+                    'menu',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 25,
@@ -152,7 +151,6 @@ class Home extends StatelessWidget {
                   ),
                   SizedBox(height: 5),
 
-                  // Using FoodItem with add to cart functionality
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
