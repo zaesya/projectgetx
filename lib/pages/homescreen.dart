@@ -9,8 +9,19 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final BottomNavController bottomNavController = Get.find();
-
     final List<Widget> menus = [Home(), Deliver(), Profile()];
+
+    BottomNavigationBarItem buildNavBarItem(String assetPath, String label, int index) {
+      return BottomNavigationBarItem(
+        icon: AnimatedContainer(
+          duration: Duration(milliseconds: 300),  
+          width: bottomNavController.selectedIndex.value == index ? 40 : 30,
+          height: bottomNavController.selectedIndex.value == index ? 40 : 30,
+          child: Image.asset(assetPath),
+        ),
+        label: label,
+      );
+    }
 
     return Obx(() {
       return Scaffold(
@@ -18,35 +29,12 @@ class HomePage extends StatelessWidget {
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: bottomNavController.selectedIndex.value,
           onTap: bottomNavController.changeindexMenu,
-          
-          selectedItemColor: const Color.fromARGB(255, 243, 33, 33),  
-          unselectedItemColor: Colors.grey, 
+          selectedItemColor: const Color.fromARGB(255, 243, 33, 33),
+          unselectedItemColor: Colors.grey,
           items: [
-           
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                'assets/logo_mcd.png',  
-                width: 30, 
-                height: 30, 
-              ),
-              label: "Home",
-            ),
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                'assets/mcdeliver.png',  
-                width: 30, 
-                height: 30, 
-              ),
-              label: "Delivery",
-            ),
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                'assets/sim.png',  
-                width: 30, 
-                height: 30, 
-              ), 
-              label: "Profile",
-            ),
+            buildNavBarItem('assets/logo_mcd.png', "Home", 0),
+            buildNavBarItem('assets/mcdeliver.png', "Delivery", 1),
+            buildNavBarItem('assets/sim.png', "Profile", 2),
           ],
         ),
       );

@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'GetX Login App',
       theme: ThemeData(
         primarySwatch: Colors.green,
@@ -22,9 +23,9 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: '/login', page: () => LoginPage()),
         GetPage(
-          name: '/home',
+          name: '/home',  
           page: () => HomePage(),
-          binding: MyBindings(), // Pastikan binding ini menghubungkan controller
+          binding: MyBindings(), 
         ),
       ],
     );

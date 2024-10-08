@@ -8,7 +8,7 @@ class Deliver extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Initialize cartController inside build method
-    final CartController cartController = Get.find<CartController>();
+    final CartController cartController = Get.find();
 
     return Scaffold(
       body: Column(

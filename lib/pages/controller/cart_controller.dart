@@ -10,15 +10,15 @@ class CartController extends GetxController {
 
   void removeSelectedItems() {
     cartItems.removeWhere((item) => selectedItems.contains(item));
-    selectedItems.clear(); // Clear selections after removal
+    selectedItems.clear(); 
   }
 
   void toggleSelection(String item) {
     if (selectedItems.contains(item)) {
-      selectedItems.remove(item); // Deselect
+      selectedItems.remove(item); 
     } else {
-      selectedItems.add(item); // Select
+      selectedItems.add(item); 
     }
-    // No need for update() here because RxList is reactive.
+    
   }
 }

@@ -1,24 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:projectgetx/pages/controller/usercontroller.dart';
 import 'package:projectgetx/widgetReuse/textfield.dart';
+
 
 class LoginPage extends StatelessWidget {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final UserController userController = Get.put(UserController()); 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFFDB7D), // Set the background color for the whole screen
-      body: SingleChildScrollView( // Allows scrolling to avoid overflow
+      backgroundColor: Color(0xFFFFDB7D),
+      body: SingleChildScrollView(
         child: Container(
-          width: MediaQuery.of(context).size.width, // Full width
-          height: MediaQuery.of(context).size.height, // Full height
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
           padding: const EdgeInsets.symmetric(
-            horizontal: 107, // Apply horizontal padding as in the original
+            horizontal: 107,
           ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center, // Center content
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
@@ -33,33 +36,53 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 30),
               
-              // Username input field
               ReusableTextField(
                 hintText: 'Username',
                 controller: usernameController,
               ),
               const SizedBox(height: 20),
               
-              // Password input field
               ReusableTextField(
                 hintText: 'Password',
                 controller: passwordController,
-                isPassword: true, // Mask text for password input
+                isPassword: true,
               ),
               
               const SizedBox(height: 40),
               ElevatedButton(
                 onPressed: () {
-                  String username = usernameController.text;
-                  String password = passwordController.text;
-                  // Perform login logic here
-                  print('Username: $username, Password: $password');
-                  Get.toNamed('home'); // Navigate to 'home'
-                },
+                String username = usernameController.text;
+                String password = passwordController.text;
+
+                String correctUsername = 'zesya';
+                String correctPassword = '12345';
+
+                if (username.isEmpty || password.isEmpty) {
+                  Get.snackbar(
+                    'Fields Required', 
+                    'Please enter both username and password.', 
+                    snackPosition: SnackPosition.BOTTOM, 
+                  );
+                } 
+                else if (username != correctUsername || password != correctPassword) {
+                  Get.snackbar(
+                    'Login Failed',
+                    'Invalid username or password.', 
+                    snackPosition: SnackPosition.BOTTOM,
+                  );
+                } 
+               
+                else {
+                  userController.login(username); 
+                  Get.toNamed('home'); 
+                }
+              },
+
+
                 child: Text(
                   'Login',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: const Color.fromARGB(255, 255, 255, 255),
                     fontSize: 20,
                     fontFamily: 'Outfit',
                     fontWeight: FontWeight.w700,

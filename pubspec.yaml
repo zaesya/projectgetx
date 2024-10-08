@@ -31,6 +31,7 @@ flutter:
     - assets/cheeseburger.png
     - assets/kentang.png
     - assets/search.png
+    - assets/pfp.png
 
   fonts:
     - family: Outfit

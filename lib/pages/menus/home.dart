@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:projectgetx/pages/controller/cart_controller.dart';
+import 'package:projectgetx/pages/listmenu.dart';
 import 'package:projectgetx/widgetReuse/fooditem.dart';
 
 class Home extends StatelessWidget {
@@ -92,7 +93,7 @@ class Home extends StatelessWidget {
               ),
             ),
 
-            // Add padding of 40 pixels (around 4 cm)
+            // 
             Padding(
               padding: const EdgeInsets.only(top: 5.0, left: 40.0),
               child: Container(
@@ -149,87 +150,8 @@ class Home extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  SizedBox(height: 5),
 
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      // Bubur Ayam McD
-                      FoodItem(
-                        image: 'assets/bubur.png',
-                        name: 'Bubur Ayam McD',
-                        price: '23.000',
-                        onAddToCart: () {
-                          cartController.addItem('Bubur Ayam McD');
-                        },
-                      ),
-                      SizedBox(width: 16),
-
-                      // HotCakes
-                      FoodItem(
-                        image: 'assets/hotcakes.png',
-                        name: 'HotCakes',
-                        price: '20.000',
-                        onAddToCart: () {
-                          cartController.addItem('HotCakes');
-                        },
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 16),
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      // McFlurry
-                      FoodItem(
-                        image: 'assets/mcflurry.png',
-                        name: 'McFlurry Oreo',
-                        price: '12.000',
-                        onAddToCart: () {
-                          cartController.addItem('McFlurry Oreo');
-                        },
-                      ),
-                      SizedBox(width: 16),
-
-                      // Gulai
-                      FoodItem(
-                        image: 'assets/gulai.png',
-                        name: 'McD Gulai',
-                        price: '30.000',
-                        onAddToCart: () {
-                          cartController.addItem('McD Gulai');
-                        },
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 16),
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      // French Fries
-                      FoodItem(
-                        image: 'assets/kentang.png',
-                        name: 'French Fries',
-                        price: '16.000',
-                        onAddToCart: () {
-                          cartController.addItem('French Fries');
-                        },
-                      ),
-                      SizedBox(width: 16),
-
-                      // Cheeseburger
-                      FoodItem(
-                        image: 'assets/cheeseburger.png',
-                        name: 'Cheeseburger',
-                        price: '32.000',
-                        onAddToCart: () {
-                          cartController.addItem('Cheeseburger');
-                        },
-                      ),
-                    ],
-                  ),
+              FoodMenu(),
                 ],
               ),
             ),

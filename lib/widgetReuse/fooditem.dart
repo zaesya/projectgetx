@@ -4,14 +4,14 @@ class FoodItem extends StatelessWidget {
   final String image;
   final String name;
   final String price;
-  final VoidCallback onAddToCart; // Callback for adding to cart
+  final VoidCallback onAddToCart;
 
   const FoodItem({
     Key? key,
     required this.image,
     required this.name,
     required this.price,
-    required this.onAddToCart, // Initialize the callback
+    required this.onAddToCart,
   }) : super(key: key);
 
   @override
@@ -45,7 +45,7 @@ class FoodItem extends StatelessWidget {
               height: 137,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(image), // image passed as a parameter
+                  image: AssetImage(image),
                   fit: BoxFit.fill,
                 ),
               ),
@@ -59,7 +59,7 @@ class FoodItem extends StatelessWidget {
               width: 155,
               height: 34,
               child: Text(
-                name, // name passed as a parameter
+                name, 
                 style: TextStyle(
                   color: Color(0xFF161C2D),
                   fontSize: 20,
@@ -77,7 +77,7 @@ class FoodItem extends StatelessWidget {
             child: Opacity(
               opacity: 0.70,
               child: Text(
-                price, // price passed as a parameter
+                price,
                 style: TextStyle(
                   color: Color(0xFF161C2D),
                   fontSize: 12,
@@ -88,55 +88,58 @@ class FoodItem extends StatelessWidget {
               ),
             ),
           ),
+
           // Add to Cart Button
-          Positioned(
-            left: 36,
-            top: 217,
-            child: Container(
-              width: 111,
-              height: 30,
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Color(0x1D011730),
-                    blurRadius: 44,
-                    offset: Offset(0, 42),
-                    spreadRadius: -10,
-                  ),
-                ],
-              ),
-              child: Stack(
-                children: [
-                  Container(
-                    width: 111,
-                    height: 30,
-                    decoration: ShapeDecoration(
-                      color: Color(0xFFFCAD37),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+           Positioned(
+            left: 13,
+            top: 210,
+            child: Center(
+              child: SizedBox(
+                width: 155, 
+                height: 34,
+                child: Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color(0x1D011730),
+                        blurRadius: 44,
+                        offset: Offset(0, 42),
+                        spreadRadius: -10,
                       ),
-                    ),
+                    ],
                   ),
-                  Center(
-                    child: TextButton(
-                      onPressed: onAddToCart, // Trigger the callback on button press
-                      child: Text(
-                        '+ Add to Cart',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontFamily: 'Outfit',
-                          fontWeight: FontWeight.w700,
-                          letterSpacing: -0.50,
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Color(0xFFFCAD37)),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
                         ),
                       ),
                     ),
+                    onPressed: onAddToCart,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center, 
+                      children: [
+                        Text(
+                          "+  Add to Cart",
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontFamily: 'Outfit',
+                            fontWeight: FontWeight.w700,
+                            letterSpacing: -0.50,
+                            color: Colors.white, 
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ],
+                ),
               ),
             ),
-          ),
+          )
+
+
         ],
       ),
     );
