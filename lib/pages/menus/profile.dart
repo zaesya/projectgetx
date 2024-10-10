@@ -3,9 +3,8 @@ import 'package:get/get.dart';
 import 'package:projectgetx/pages/controller/usercontroller.dart';
 import 'package:projectgetx/pages/login_page.dart';
 
-
 class Profile extends StatelessWidget {
-  final UserController userController = Get.put(UserController()); // Retrieve UserController instance
+  final UserController userController = Get.find<UserController>();
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +14,6 @@ class Profile extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          // Fixed Image Header
           Container(
             width: double.infinity,
             height: 80,
@@ -26,44 +24,40 @@ class Profile extends StatelessWidget {
               ),
             ),
           ),
-                    Expanded(
+          Expanded(
             child: Container(
               width: screenWidth,
               padding: const EdgeInsets.only(
-                top: 190,
-                left: 87.21,
-                right: 119,
+                top: 100, // Sesuaikan padding atas untuk lebih seimbang
+                left: 20,
+                right: 20,
                 bottom: 50,
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.end, // Memusatkan elemen secara horizontal
+                mainAxisAlignment: MainAxisAlignment.center, // Pusatkan secara vertikal
+                crossAxisAlignment: CrossAxisAlignment.center, // Pusatkan secara horizontal
                 children: [
-                  // Profile Image Stack
                   Container(
                     width: 223.79,
                     height: 178,
                     child: Stack(
+                      alignment: Alignment.center, // Pusatkan gambar
                       children: [
-                        Positioned(
-                          left: 34.79,
-                          top: 0,
-                          child: Container(
-                            width: 185,
-                            height: 178,
-                            decoration: ShapeDecoration(
-                              image: DecorationImage(
-                                image: AssetImage('assets/pfp.png'), 
-                                fit: BoxFit.fill,
-                              ),
-                              shape: OvalBorder(),
+                        Container(
+                          width: 185,
+                          height: 178,
+                          decoration: ShapeDecoration(
+                            image: DecorationImage(
+                              image: AssetImage('assets/pfp.png'), 
+                              fit: BoxFit.fill,
                             ),
+                            shape: OvalBorder(),
                           ),
                         ),
                         Positioned(
-                          left: 173.79,
-                          top: 7,
+                          right: 10, // Menempatkan logo di posisi kanan atas
+                          top: 0,
                           child: Container(
                             width: 50,
                             height: 36,
@@ -78,31 +72,27 @@ class Profile extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 13),
+                 
 
-                  // Name and Subtitle
                   Container(
                     width: 192,
-                    height: 62,
+                    height: 94,
                     child: Stack(
+                      alignment: Alignment.center, 
                       children: [
+                        Obx(() => Text(
+                          userController.username.value, 
+                          style: TextStyle(
+                            color: Color(0xFF161C2D),
+                            fontSize: 30,
+                            fontFamily: 'Outfit',
+                            fontWeight: FontWeight.w700,
+                            letterSpacing: -0.50,
+                          ),
+                        )),
+                        const SizedBox(height: 30),
                         Positioned(
-                          left: 57,
-                          top: 0,
-                          child: Obx(() => Text(
-                            userController.username.value, // Reactive username
-                            style: TextStyle(
-                              color: Color(0xFF161C2D),
-                              fontSize: 30,
-                              fontFamily: 'Outfit',
-                              fontWeight: FontWeight.w700,
-                              letterSpacing: -0.50,
-                            ),
-                          )),
-                        ),
-                        Positioned(
-                          left: 0,
-                          top: 33,
+                          bottom: 0, 
                           child: Opacity(
                             opacity: 0.70,
                             child: Text(
@@ -120,41 +110,43 @@ class Profile extends StatelessWidget {
                       ],
                     ),
                   ),
-
-                  // Logout Button (inside Container)
                   const SizedBox(height: 30),
-                  ElevatedButton(
-                    onPressed: () {
-                      showLogoutDialog(context);
-                    },
-                    child: Text('Logout'),
+
+                  // Tombol logout
+                  Center( // Center tombol logout
+                    child: ElevatedButton(
+                      onPressed: () {
+                        showLogoutDialog(context);
+                      },
+                      child: Text('Logout'),
+                    ),
                   ),
                 ],
               ),
             ),
           ),
-
         ],
       ),
     );
   }
 
-        void showLogoutDialog(BuildContext context) {
-          Get.defaultDialog(
-            title: 'Are you sure?',
-            middleText: 'Do you really want to logout?',
-            confirm: ElevatedButton(
-              onPressed: () {
-                Get.offAll(LoginPage()); 
-              },
-              child: Text('Yes'),
-            ),
-            cancel: ElevatedButton(
-              onPressed: () {
-                Get.back(); 
-              },
-              child: Text('No'),
-            ),
+  void showLogoutDialog(BuildContext context) {
+    Get.defaultDialog(
+      title: 'Are you sure?',
+      middleText: 'Do you really want to logout?',
+      confirm: ElevatedButton(
+        onPressed: () {
+          Get.delete<UserController>(); 
+          Get.offAll(LoginPage()); 
+        },
+        child: Text('Yes'),
+      ),
+      cancel: ElevatedButton(
+        onPressed: () {
+          Get.back(); 
+        },
+        child: Text('No'),
+      ),
     );
   }
 }

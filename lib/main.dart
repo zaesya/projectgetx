@@ -6,9 +6,10 @@ import 'package:projectgetx/pages/homescreen.dart';
 import 'package:projectgetx/pages/login_page.dart';
 
 void main() {
-  Get.put(CartController());
+  Get.put(CartController()); 
   runApp(MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   @override

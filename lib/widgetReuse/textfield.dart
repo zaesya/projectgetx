@@ -15,23 +15,23 @@ class ReusableTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 215, // Fixed width
-      height: 35, // Fixed height
+      width: 215, 
+      height: 35, 
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
       ),
       child: TextFormField(
         controller: controller,
-        obscureText: isPassword, // Mask text if it's a password field
+        obscureText: isPassword, 
         decoration: InputDecoration(
           hintText: hintText,
           contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-          border: InputBorder.none, // Remove the default border
+          border: InputBorder.none, 
         ),
         style: TextStyle(
           fontFamily: 'Outfit',
-          fontSize: 12, // Match the font size to the original design
+          fontSize: 12, 
         ),
       ),
     );

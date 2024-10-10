@@ -21,7 +21,6 @@ class FoodItem extends StatelessWidget {
       height: 255,
       child: Stack(
         children: [
-          // Background box
           Positioned(
             left: 0,
             top: 0,

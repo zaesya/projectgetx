@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:projectgetx/pages/controller/cart_controller.dart';
+import 'package:projectgetx/pages/controller/deliverymodel.dart';
 import 'package:projectgetx/widgetReuse/fooditem.dart';
 
 class FoodMenu extends StatelessWidget {
@@ -24,10 +25,10 @@ class FoodMenu extends StatelessWidget {
     return ListView.builder(
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
-      itemCount: (foods.length / 2).ceil(), // Each row contains 2 items
+      itemCount: (foods.length / 2).ceil(),
       itemBuilder: (context, index) {
-        final int firstIndex = index * 2; // Get the index of the first item in the row
-        final int secondIndex = firstIndex + 1; // Get the index of the second item in the row
+        final int firstIndex = index * 2;
+        final int secondIndex = firstIndex + 1;
 
         return Padding(
           padding: const EdgeInsets.only(bottom: 16.0),
@@ -39,17 +40,25 @@ class FoodMenu extends StatelessWidget {
                 name: foods[firstIndex]['name']!,
                 price: foods[firstIndex]['price']!,
                 onAddToCart: () {
-                  cartController.addItem(foods[firstIndex]['name']!);
+                  cartController.addItem(
+                    ItemModel(
+                      name: foods[firstIndex]['name']!,
+                    ),
+                  );
                 },
               ),
               SizedBox(width: 16),
-              if (secondIndex < foods.length) // Ensure second item exists
+              if (secondIndex < foods.length)
                 FoodItem(
                   image: foods[secondIndex]['image']!,
                   name: foods[secondIndex]['name']!,
                   price: foods[secondIndex]['price']!,
                   onAddToCart: () {
-                    cartController.addItem(foods[secondIndex]['name']!);
+                    cartController.addItem(
+                      ItemModel(
+                        name: foods[secondIndex]['name']!,
+                      ),
+                    );
                   },
                 ),
             ],

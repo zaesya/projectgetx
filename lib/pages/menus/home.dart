@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:projectgetx/pages/controller/cart_controller.dart';
 import 'package:projectgetx/pages/listmenu.dart';
-import 'package:projectgetx/widgetReuse/fooditem.dart';
 
 class Home extends StatelessWidget {
   final CartController cartController; 
