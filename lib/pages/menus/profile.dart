@@ -28,21 +28,21 @@ class Profile extends StatelessWidget {
             child: Container(
               width: screenWidth,
               padding: const EdgeInsets.only(
-                top: 100, // Sesuaikan padding atas untuk lebih seimbang
+                top: 100, 
                 left: 20,
                 right: 20,
                 bottom: 50,
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center, // Pusatkan secara vertikal
-                crossAxisAlignment: CrossAxisAlignment.center, // Pusatkan secara horizontal
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
                     width: 223.79,
                     height: 178,
                     child: Stack(
-                      alignment: Alignment.center, // Pusatkan gambar
+                      alignment: Alignment.center,
                       children: [
                         Container(
                           width: 185,
@@ -56,7 +56,7 @@ class Profile extends StatelessWidget {
                           ),
                         ),
                         Positioned(
-                          right: 10, // Menempatkan logo di posisi kanan atas
+                          right: 10,
                           top: 0,
                           child: Container(
                             width: 50,
@@ -72,7 +72,6 @@ class Profile extends StatelessWidget {
                       ],
                     ),
                   ),
-                 
 
                   Container(
                     width: 192,
@@ -110,15 +109,15 @@ class Profile extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 10),
 
-                  // Tombol logout
-                  Center( // Center tombol logout
+                  Center( 
                     child: ElevatedButton(
+                      style:ElevatedButton.styleFrom(backgroundColor: Color(0xFFFFDB7D) ,),
                       onPressed: () {
                         showLogoutDialog(context);
                       },
-                      child: Text('Logout'),
+                      child: Text('Logout',style: TextStyle(color: Colors.white),),
                     ),
                   ),
                 ],

@@ -70,16 +70,28 @@ class Deliver extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Remove selected items
-          cartController.cartItems
-              .where((item) => item.isSelected)
-              .forEach((item) {
-                cartController.removeItemFromDB(item.id!);
-              });
-        },
-        child: Icon(Icons.remove),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            backgroundColor: Color(0xFFFFDB7D),
+            onPressed: () {
+              cartController.cartItems
+                  .where((item) => item.isSelected)
+                  .forEach((item) {
+                    cartController.removeItemFromDB(item.id!);
+                  });
+            },
+            child: Icon(Icons.remove),
+          ),
+          SizedBox(width: 10), 
+          FloatingActionButton(
+            backgroundColor: Color(0xFFFFDB7D),
+            onPressed: () {
+            },
+            child: Icon(Icons.add),
+          ),
+        ],
       ),
     );
   }

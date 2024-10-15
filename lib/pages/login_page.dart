@@ -23,7 +23,7 @@ class LoginPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                'Login.',
+                'Welcome.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color(0xFFEB2A34),
@@ -74,9 +74,9 @@ class LoginPage extends StatelessWidget {
                   }
                 },
                 child: Text(
-                  'Login',
+                  'login',
                   style: TextStyle(
-                    color: const Color.fromARGB(255, 255, 255, 255),
+                    color: const Color.fromARGB(255, 255, 185, 94),
                     fontSize: 20,
                     fontFamily: 'Outfit',
                     fontWeight: FontWeight.w700,
