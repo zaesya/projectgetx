@@ -35,6 +35,7 @@ flutter:
     - assets/search.png
     - assets/pfp.png
     - assets/lines.png
+    - assets/co.png
 
   fonts:
     - family: Outfit

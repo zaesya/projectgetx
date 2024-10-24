@@ -32,7 +32,7 @@ class Deliver extends StatelessWidget {
                   final item = cartController.cartItems[index];
                   return GestureDetector(
                     onTap: () {
-                      cartController.toggleItemSelection(item); // Toggle selection in DB
+                      cartController.toggleItemSelection(item); 
                     },
                     child: Card(
                       margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -85,11 +85,18 @@ class Deliver extends StatelessWidget {
             child: Icon(Icons.remove),
           ),
           SizedBox(width: 10), 
-          FloatingActionButton(
+                    FloatingActionButton(
             backgroundColor: Color(0xFFFFDB7D),
             onPressed: () {
             },
-            child: Icon(Icons.add),
+            child: SizedBox(
+              width: 35, 
+              height: 35, 
+              child: Image.asset(
+                'assets/co.png',
+                fit: BoxFit.contain, 
+              ),
+            ),
           ),
         ],
       ),

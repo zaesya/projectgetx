@@ -14,7 +14,6 @@ class ItemModel {
     };
   }
 
-  // Convert Map object from database to ItemModel object
   factory ItemModel.fromMap(Map<String, dynamic> map) {
     return ItemModel(
       id: map['id'],
