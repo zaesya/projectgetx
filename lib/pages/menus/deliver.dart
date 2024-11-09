@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:projectgetx/pages/controller/cart_controller.dart';
+import 'package:projectgetx/widgetReuse/header_image.dart';
 
 class Deliver extends StatelessWidget {
   Deliver({super.key});
@@ -14,16 +15,8 @@ class Deliver extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          Container(
-            width: 600,
-            height: 80,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/header.png'),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
+          HeaderImage(),
+          
           Expanded(
             child: Obx(() {
               return ListView.builder(

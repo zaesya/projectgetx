@@ -1,13 +1,16 @@
+// File: lib/pages/home.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:projectgetx/pages/controller/cart_controller.dart';
 import 'package:projectgetx/pages/listmenu.dart';
+import 'package:projectgetx/widgetReuse/header_image.dart';
+
 
 class Home extends StatelessWidget {
-  final CartController cartController; 
+  final CartController cartController;
 
-  Home({Key? key}) 
-      : cartController = Get.find<CartController>(), 
+  Home({Key? key})
+      : cartController = Get.find<CartController>(),
         super(key: key);
 
   @override
@@ -17,17 +20,7 @@ class Home extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Image Header
-            Container(
-              width: 600,
-              height: 80,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/header.png'),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
+            HeaderImage(),
 
             // Search Box
             Padding(
@@ -67,8 +60,8 @@ class Home extends StatelessWidget {
                               height: 0.24,
                               letterSpacing: -0.20,
                             ),
-                            border: InputBorder.none, // Removes the border
-                            contentPadding: EdgeInsets.only(left: 40.0), // Padding for text
+                            border: InputBorder.none, // Menghapus border
+                            contentPadding: EdgeInsets.only(left: 40.0), // Padding untuk teks
                           ),
                         ),
                       ),
@@ -92,7 +85,7 @@ class Home extends StatelessWidget {
               ),
             ),
 
-            // 
+            // Konten lainnya tetap sama
             Padding(
               padding: const EdgeInsets.only(top: 5.0, left: 40.0),
               child: Container(
@@ -150,7 +143,7 @@ class Home extends StatelessWidget {
                     ),
                   ),
 
-              FoodMenu(),
+                  FoodMenu(),
                 ],
               ),
             ),

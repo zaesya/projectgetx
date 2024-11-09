@@ -1,7 +1,9 @@
+// File: lib/pages/profile.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:projectgetx/pages/controller/usercontroller.dart';
 import 'package:projectgetx/pages/login_page.dart';
+import 'package:projectgetx/widgetReuse/header_image.dart';
 
 class Profile extends StatelessWidget {
   final UserController userController = Get.find<UserController>();
@@ -14,21 +16,13 @@ class Profile extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          Container(
-            width: double.infinity,
-            height: 80,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/header.png'), 
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
+          HeaderImage(),
+
           Expanded(
             child: Container(
               width: screenWidth,
               padding: const EdgeInsets.only(
-                top: 100, 
+                top: 100,
                 left: 20,
                 right: 20,
                 bottom: 50,
@@ -49,7 +43,7 @@ class Profile extends StatelessWidget {
                           height: 178,
                           decoration: ShapeDecoration(
                             image: DecorationImage(
-                              image: AssetImage('assets/pfp.png'), 
+                              image: AssetImage('assets/pfp.png'),
                               fit: BoxFit.fill,
                             ),
                             shape: OvalBorder(),
@@ -77,10 +71,10 @@ class Profile extends StatelessWidget {
                     width: 192,
                     height: 94,
                     child: Stack(
-                      alignment: Alignment.center, 
+                      alignment: Alignment.center,
                       children: [
                         Obx(() => Text(
-                          userController.username.value, 
+                          userController.username.value,
                           style: TextStyle(
                             color: Color(0xFF161C2D),
                             fontSize: 30,
@@ -91,7 +85,7 @@ class Profile extends StatelessWidget {
                         )),
                         const SizedBox(height: 30),
                         Positioned(
-                          bottom: 0, 
+                          bottom: 0,
                           child: Opacity(
                             opacity: 0.70,
                             child: Text(
@@ -111,13 +105,16 @@ class Profile extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
 
-                  Center( 
+                  Center(
                     child: ElevatedButton(
-                      style:ElevatedButton.styleFrom(backgroundColor: Color(0xFFFFDB7D) ,),
+                      style: ElevatedButton.styleFrom(backgroundColor: Color(0xFFFFDB7D)),
                       onPressed: () {
                         showLogoutDialog(context);
                       },
-                      child: Text('Logout',style: TextStyle(color: Colors.white),),
+                      child: Text(
+                        'Logout',
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
                 ],
@@ -135,14 +132,14 @@ class Profile extends StatelessWidget {
       middleText: 'Do you really want to logout?',
       confirm: ElevatedButton(
         onPressed: () {
-          Get.delete<UserController>(); 
-          Get.offAll(LoginPage()); 
+          Get.delete<UserController>();
+          Get.offAll(LoginPage());
         },
         child: Text('Yes'),
       ),
       cancel: ElevatedButton(
         onPressed: () {
-          Get.back(); 
+          Get.back();
         },
         child: Text('No'),
       ),
