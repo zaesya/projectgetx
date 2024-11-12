@@ -1,98 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:projectgetx/pages/controller/cart_controller.dart';
-import 'package:projectgetx/widgetReuse/header_image.dart';
+import 'package:projectgetx/pages/controller/responsive_controller.dart';
+import 'package:projectgetx/pages/menus/responsive/deliver_mobile.dart';
+import 'package:projectgetx/pages/menus/responsive/deliver_tablet.dart';
 
 class Deliver extends StatelessWidget {
   Deliver({super.key});
 
-  final CartController cartController = Get.put(CartController()); 
+  final CartController cartController = Get.put(CartController());
+  final ResponsiveController responsiveController = Get.put(ResponsiveController());
 
   @override
   Widget build(BuildContext context) {
+    responsiveController.updateScreenWidth(MediaQuery.of(context).size.width);
+    
     cartController.loadItemsFromDB();
 
-    return Scaffold(
-      body: Column(
-        children: [
-          HeaderImage(),
-          
-          Expanded(
-            child: Obx(() {
-              return ListView.builder(
-                itemCount: cartController.cartItems.length,
-                itemBuilder: (context, index) {
-                  final item = cartController.cartItems[index];
-                  return GestureDetector(
-                    onTap: () {
-                      cartController.toggleItemSelection(item); 
-                    },
-                    child: Card(
-                      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                      elevation: 5,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        side: item.isSelected
-                            ? BorderSide(color: const Color.fromARGB(255, 255, 176, 91), width: 2)
-                            : BorderSide.none,
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              item.name,
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: item.isSelected ? const Color.fromARGB(255, 255, 176, 91) : Colors.black,
-                              ),
-                            ),
-                            Icon(
-                              Icons.check_circle,
-                              color: item.isSelected ? const Color.fromARGB(255, 255, 176, 91) : Colors.grey,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              );
-            }),
-          ),
-        ],
-      ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          FloatingActionButton(
-            backgroundColor: Color(0xFFFFDB7D),
-            onPressed: () {
-              cartController.cartItems
-                  .where((item) => item.isSelected)
-                  .forEach((item) {
-                    cartController.removeItemFromDB(item.id!);
-                  });
-            },
-            child: Icon(Icons.remove),
-          ),
-          SizedBox(width: 10), 
-                    FloatingActionButton(
-            backgroundColor: Color(0xFFFFDB7D),
-            onPressed: () {
-            },
-            child: SizedBox(
-              width: 35, 
-              height: 35, 
-              child: Image.asset(
-                'assets/co.png',
-                fit: BoxFit.contain, 
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+    return Obx(() {
+      if (responsiveController.isMobile) {
+        return DeliverMobile(cartController: cartController);
+      } else {
+        return DeliverTablet(cartController: cartController);
+      }
+    });
   }
 }

@@ -6,10 +6,9 @@ import 'package:projectgetx/pages/homescreen.dart';
 import 'package:projectgetx/pages/login_page.dart';
 
 void main() {
-  Get.put(CartController()); 
+  Get.put(CartController());
   runApp(MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   @override
@@ -24,9 +23,9 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: '/login', page: () => LoginPage()),
         GetPage(
-          name: '/home',  
+          name: '/home',
           page: () => HomePage(),
-          binding: MyBindings(), 
+          binding: MyBindings(),
         ),
       ],
     );

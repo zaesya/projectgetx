@@ -33,19 +33,19 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 30),
-              
+
               ReusableTextField(
                 hintText: 'Username',
                 controller: usernameController,
               ),
               const SizedBox(height: 20),
-              
+
               ReusableTextField(
                 hintText: 'Password',
                 controller: passwordController,
                 isPassword: true,
               ),
-              
+
               const SizedBox(height: 40),
               ElevatedButton(
                 onPressed: () {
@@ -70,6 +70,16 @@ class LoginPage extends StatelessWidget {
                   } else {
                     final UserController userController = Get.put(UserController());
                     userController.login(username); 
+
+                    // Snackbar untuk login berhasil
+                    Get.snackbar(
+                      'Login Successful',
+                      'Welcome, $username!',
+                      snackPosition: SnackPosition.BOTTOM,
+                      backgroundColor: Colors.greenAccent,
+                      colorText: Colors.white,
+                    );
+
                     Get.toNamed('home'); 
                   }
                 },

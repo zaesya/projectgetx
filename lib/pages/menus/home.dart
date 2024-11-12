@@ -22,7 +22,6 @@ class Home extends StatelessWidget {
           children: [
             HeaderImage(),
 
-            // Search Box
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 5.0),
               child: Container(
